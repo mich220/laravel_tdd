@@ -7,9 +7,13 @@
 <body>
     <h1>tddApp</h1>
     <ul>
-        @foreach($projects as $project)
-            {{$project->title}}
-        @endforeach
+        @forelse($projects as $project)
+            <li>
+                <a href="{{ $project->path() }}">{{$project->title}}</a>
+            </li>
+        @empty
+            <li>No projects yet.</li>
+        @endforelse
     </ul>
 </body>
 </html>
