@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>tddApp</h1>
+@extends('layouts.app')
+
+@section('content')
+    <div class="flex items-center mb-3">
+        <h1 class="mr-auto">tddApp</h1>
+        <a href="projects/create">Create a project</a>
+    </div>
+
     <ul>
         @forelse($projects as $project)
             <li>
@@ -15,5 +15,5 @@
             <li>No projects yet.</li>
         @endforelse
     </ul>
-</body>
-</html>
+    
+@endsection

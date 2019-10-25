@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>tddApp</h1>
+@extends('layouts.app')
+
+@section('content')
+    <div style="display: flex; align-items: center">
+        <h1 class="mr-auto">tddApp</h1>
+        <a href="/projects">Back</a>
+    </div>
     <ul>
         {{$project->title}}
         {{$project->description}}
     </ul>
-</body>
-</html>
+
+@endsection

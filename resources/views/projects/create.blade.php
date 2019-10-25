@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-</head>
-<body>
-    <form class="container" method="post" action="/projects" style="padding-top: 40px">
+@extends('layouts.app')
+@section('content')
+    <form method="post" action="/projects">
         @csrf
         <h1 class="heading is-1">Create a project</h1>
 
@@ -29,8 +23,8 @@
         <div class="field">
             <div class="control">
                 <button type="submit" class="button is-link">Create Project</button>
+                <a href="/projects">Back</a>
             </div>
         </div>
     </form>
-</body>
-</html>
+@endsection
