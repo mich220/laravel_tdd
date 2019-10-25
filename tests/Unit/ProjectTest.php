@@ -10,6 +10,7 @@ class ProjectTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+
     public function it_has_path()
     {
         $project = factory('App\Project')->create();
@@ -27,6 +28,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+
     public function it_can_add_task()
     {
         $project = factory('App\Project')->create();
