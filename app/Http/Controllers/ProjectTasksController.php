@@ -74,6 +74,7 @@ class ProjectTasksController extends Controller
      * @param Project $project
      * @param Task $task
      * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Project $project, Task $task)
     {
@@ -81,10 +82,10 @@ class ProjectTasksController extends Controller
 
         request()->validate(['body' => 'required']);
 
-        $task->update([
-            'body' => request('body'),
-            'completed' => request()->has('completed'),
-        ]);
+        $task->update(['body' => request('body')]);
+
+        if(request()->has('completed'))
+            $task->complete();
 
         return redirect($project->path());
     }
