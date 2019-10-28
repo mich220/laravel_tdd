@@ -2,22 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProjectRequest;
 use App\Project;
-use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        $projects = auth()->user()->projects()->get();
 
         return view('projects.index', compact('projects'));
     }
 
+    public function show(Project $project)
+    {
+        $this->authorize('update', $project);
+
+        return view('projects.show', compact('project'));
+    }
+
+    public function create()
+    {
+        return view('projects.create');
+    }
+
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
+    }
+
     public function store()
     {
-        Project::create(request(['title', 'description']));
+        $attributes = $this->validateRequest();
 
-        return redirect('/projects');
+        $project = auth()->user()->projects()->create($attributes);
+
+        return redirect($project->path());
+    }
+
+    public function update(UpdateProjectRequest $request)
+    {
+        $request->save();
+
+        return redirect($request->save()->path());
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable',
+        ]);
     }
 }
