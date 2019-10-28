@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProjectRequest;
 use App\Project;
-use Illuminate\Http\Request;
-use function Sodium\compare;
 
 class ProjectsController extends Controller
 {
@@ -27,31 +26,33 @@ class ProjectsController extends Controller
         return view('projects.create');
     }
 
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
+    }
+
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => '',
-        ]);
+        $attributes = $this->validateRequest();
 
         $project = auth()->user()->projects()->create($attributes);
 
         return redirect($project->path());
     }
 
-    public function update(Project $project)
+    public function update(UpdateProjectRequest $request)
     {
-        $this->authorize('update', $project);
+        $request->save();
 
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3',
+        return redirect($request->save()->path());
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable',
         ]);
-
-        $project->update($attributes);
-
-        return redirect($project->path());
     }
 }
