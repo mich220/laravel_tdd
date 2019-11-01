@@ -6,13 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
+    /**
+     * Attributes to guard against mass assignment
+     *
+     * @var array
+     */
     protected $guarded = [];
 
+    /**
+     * The relationships that should be touched on save
+     *
+     * @var array
+     */
     protected $touches = ['project'];
 
     protected $casts = [
         'completed' => 'boolean',
     ];
+
+    protected static $recordableEvents = ['created', 'deleted'];
 
     public function complete()
     {
@@ -38,17 +52,4 @@ class Task extends Model
         return $this->belongsTo(Project::class);
     }
 
-
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'project_id' => $this->project_id,
-            'description' => $description,
-        ]);
-    }
-
-    public function activity()
-    {
-        return $this->morphMany(Activity::class, 'subject')->latest();
-    }
 }
