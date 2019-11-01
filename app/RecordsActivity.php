@@ -5,6 +5,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Auth;
 
 trait RecordsActivity
 {
@@ -70,6 +71,7 @@ trait RecordsActivity
     {
         $this->activity()->create([
             'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id,
+            'user_id' =>  ($this->project ?? $this)->owner->id,
             'description' => $description,
             'changes' => $this->activityChanges()
         ]);
