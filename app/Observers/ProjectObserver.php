@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Activity;
 use App\Project;
 
 class ProjectObserver
@@ -10,7 +9,7 @@ class ProjectObserver
     /**
      * Handle the project "created" event.
      *
-     * @param  \App\Project  $project
+     * @param Project $project
      * @return void
      */
     public function created(Project $project)
@@ -19,9 +18,20 @@ class ProjectObserver
     }
 
     /**
+     * Handle the project "updating" event.
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function updating(Project $project)
+    {
+        $project->old = $project->getOriginal();
+    }
+
+    /**
      * Handle the project "updated" event.
      *
-     * @param  \App\Project  $project
+     * @param Project $project
      * @return void
      */
     public function updated(Project $project)
