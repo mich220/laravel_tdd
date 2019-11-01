@@ -14,7 +14,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function guests_cannot_manage_projects()
+    function guests_cannot_manage_projects()
     {
         $project = factory('App\Project')->create();
 
@@ -27,7 +27,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function a_user_can_create_a_project()
+    function a_user_can_create_a_project()
     {
         $this->signIn();
 
@@ -53,7 +53,35 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function a_user_can_update_a_project()
+    function unauthorized_users_cannot_delete_projects()
+    {
+        $project = ProjectFactory::create();
+
+        $this->delete($project->path())
+            ->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->delete($project->path())
+            ->assertStatus(403);
+    }
+
+    /** @test */
+
+    function a_user_can_delete_a_project()
+    {
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)
+            ->delete($project->path())
+            ->assertRedirect('/projects');
+
+        $this->assertDatabaseMissing('projects', $project->only('id'));
+    }
+
+    /** @test */
+
+    function a_user_can_update_a_project()
     {
         $project = ProjectFactory::create();
 
@@ -68,7 +96,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function a_user_can_update_a_projects_general_notes()
+    function a_user_can_update_a_projects_general_notes()
     {
         $project = ProjectFactory::create();
 
@@ -80,7 +108,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function a_users_can_view_their_project()
+    function a_users_can_view_their_project()
     {
         $project = ProjectFactory::create();
 
@@ -91,7 +119,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function an_authenticated_user_cannot_view_the_projects_of_others()
+    function an_authenticated_user_cannot_view_the_projects_of_others()
     {
         $this->signIn();
 
@@ -102,7 +130,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function an_authenticated_user_cannot_update_the_projects_of_others()
+    function an_authenticated_user_cannot_update_the_projects_of_others()
     {
         $this->signIn();
 
@@ -113,7 +141,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function a_project_requires_a_title()
+    function a_project_requires_a_title()
     {
         $this->signIn();
 
@@ -124,7 +152,7 @@ class ManageProjectsTest extends TestCase
 
     /** @test */
 
-    public function a_project_requires_a_description()
+    function a_project_requires_a_description()
     {
         $this->signIn();
 

@@ -14,7 +14,7 @@ class TriggerActivityTest extends TestCase
 
     /** @test */
 
-    public function creating_a_project()
+    function creating_a_project()
     {
         $project = ProjectFactory::create();
 
@@ -30,7 +30,7 @@ class TriggerActivityTest extends TestCase
 
     /** @test */
 
-    public function updating_a_project()
+    function updating_a_project()
     {
         $project = ProjectFactory::create();
 
@@ -55,7 +55,7 @@ class TriggerActivityTest extends TestCase
 
     /** @test */
 
-    public function creating_a_new_task()
+    function creating_a_new_task()
     {
         $project = ProjectFactory::create();
 
@@ -72,7 +72,7 @@ class TriggerActivityTest extends TestCase
 
     /** @test */
 
-    public function completing_a_new_task()
+    function completing_a_new_task()
     {
         $project = ProjectFactory::withTasks(1)->create();
 
@@ -91,7 +91,7 @@ class TriggerActivityTest extends TestCase
 
     /** @test */
 
-    public function incompleting_a_task()
+    function incompleting_a_task()
     {
         $project = ProjectFactory::withTasks(1)->create();
 
@@ -116,7 +116,7 @@ class TriggerActivityTest extends TestCase
 
     /** @test */
 
-    public function deleting_a_task()
+    function deleting_a_task()
     {
         $project = ProjectFactory::withTasks(1)->create();
 
