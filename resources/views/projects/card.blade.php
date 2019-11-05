@@ -1,12 +1,13 @@
-<div class="card" style="height: 200px">
+<div class="card flex flex-col">
     <h3 class="font-normal text-xl py-4 -ml-5 border-l-4 border-blue-light pl-4">
-        <a href="{{ $project->path()  }}" class="text-black no-underline">
+        <a href="{{ $project->path()  }}" class="text-default no-underline">
             {{ $project->title  }}
         </a>
     </h3>
 
-    <div class="text-grey" style="word-wrap: break-word">{{ str_limit($project->description, 100) }}</div>
+    <div class="text-default mb-4 flex-1" style="word-wrap: break-word">{{ str_limit($project->description, 100) }}</div>
 
+    @can('manage', $project)
     <footer>
         <form method="POST" action="{{ $project->path() }}" class="text-right">
             @csrf
@@ -14,5 +15,6 @@
             <button type="submit" class="text-xs">Delete</button>
         </form>
     </footer>
+    @endcan
 </div>
 

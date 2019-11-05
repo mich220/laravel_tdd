@@ -16,8 +16,18 @@ class InvitationsTest extends TestCase
 
     function non_owners_may_not_invite_users()
     {
-        $this->actingAs(factory(User::class)->create())
-            ->post(ProjectFactory::create()->path() . '/invitations')
+        $project = ProjectFactory::create();
+
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->post($project->path() . '/invitations')
+            ->assertStatus(403);
+
+        $project->invite($user);
+
+        $this->actingAs($user)
+            ->post($project->path() . '/invitations')
             ->assertStatus(403);
     }
 
@@ -46,11 +56,11 @@ class InvitationsTest extends TestCase
 
         $this->actingAs($project->owner)
             ->post($project->path() . '/invitations', [
-                'email' => 'user@mail.com'
+                'email' => 'example@example.com'
             ])
             ->assertSessionHasErrors([
                 'email' => 'The user You inviting must have a BirdBoard account.'
-            ]);
+            ], null, 'invitations');
 
     }
 
