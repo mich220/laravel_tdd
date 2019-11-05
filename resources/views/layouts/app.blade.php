@@ -46,6 +46,7 @@
                                 </li>
                             @else
                                 <li class="nav-item dropdown">
+                                    <img src="https://gravatar.com/avatar/{{ md5(Auth::user()->mail) }}?s=60" alt="{{  Auth::user()->name }}'s avatar" class="rounded-full w-8 mr-2" />
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
