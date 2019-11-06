@@ -19,52 +19,46 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="theme-dark bg-page">
+<body class="theme-light bg-page">
     <div id="app">
-        <nav class="bg-header">
+        <nav class="bg-header section">
             <div class="container mx-auto">
-                <div class="flex justify-between items-center py-2">
-                    <h2>
-                        <a class="navbar-brand text-black no-underline" href="{{ url('/') }}">
+                <div class="flex justify-between items-center py-1">
+                    <h1>
+                        <a class="navbar-brand text-default no-underline" href="{{ url('/') }}">
                             <img src="/images/logo.png" alt="logo" style="width: 8%; height:8%"/>
                             {{ config('app.name', 'Laravel') }}
                         </a>
-                    </h2>
+                    </h1>
 
                     <div>
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <div class="flex items-center ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    @if (Route::has('register'))
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    @endif
-                                </li>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                @if (Route::has('register'))
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                @endif
                             @else
-                                <li class="nav-item dropdown">
-                                    <img src="https://gravatar.com/avatar/{{ md5(Auth::user()->mail) }}?s=60" alt="{{  Auth::user()->name }}'s avatar" class="rounded-full w-8 mr-2" />
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
+                                <theme-switcher></theme-switcher>
+                                <a
+                                    class="flex items-center text-default no-underline text-sm"
+                                    href="#" role="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    v-pre
+                                >
+                                    <img height="80" width="80"
+                                        src="{{ gravatar_url(auth()->user()->email) }}?s=60"
+                                        alt="{{  Auth::user()->name }}'s avatar"
+                                        class="rounded-full mr-3"
+                                    />
+                                    {{ Auth::user()->name }}
+                                </a>
                             @endguest
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
