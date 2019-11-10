@@ -543,6 +543,7 @@ table {
   --text-muted-color: rgba(0, 0, 0, .3);
   --text-muted-light-color: rgba(255, 255, 255, .1);
   --text-muted-light-color: #e1e6e8;
+  --text-error-color: red;
 }
 
 .theme-dark {
@@ -555,6 +556,7 @@ table {
   --text-accent-light-color: #8ae2fe;
   --text-muted-color: rgba(255, 255, 255, .5);
   --text-muted-light-color: rgba(255, 255, 255, .3);
+  --text-error-color: red;
 }
 
 .button {
@@ -590,6 +592,25 @@ table {
   padding: 1.25rem;
   border-radius: .5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
+
+.dropdown-toggle > button:focus {
+  outline: 0;
+}
+
+.dropdown-menu-link {
+  display: block;
+  color: var(--text-default-color);
+  text-decoration: none;
+  font-size: .875rem;
+  line-height: 2;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dropdown-menu-link:hover {
+  text-decoration: underline;
+  background: rgba(0, 0, 0, .1);
 }
 
 body,
@@ -763,6 +784,10 @@ button {
 
 .border-muted-light {
   border-color: var(--text-muted-light-color);
+}
+
+.border-error {
+  border-color: var(--text-error-color);
 }
 
 .border-black {
@@ -1073,6 +1098,10 @@ button {
   border-color: var(--text-muted-light-color);
 }
 
+.hover\:border-error:hover {
+  border-color: var(--text-error-color);
+}
+
 .hover\:border-black:hover {
   border-color: #22292f;
 }
@@ -1379,6 +1408,10 @@ button {
 
 .focus\:border-muted-light:focus {
   border-color: var(--text-muted-light-color);
+}
+
+.focus\:border-error:focus {
+  border-color: var(--text-error-color);
 }
 
 .focus\:border-black:focus {
@@ -4181,6 +4214,10 @@ button {
   color: var(--text-muted-light-color);
 }
 
+.text-error {
+  color: var(--text-error-color);
+}
+
 .text-black {
   color: #22292f;
 }
@@ -4493,6 +4530,10 @@ button {
   color: var(--text-muted-light-color);
 }
 
+.hover\:text-error:hover {
+  color: var(--text-error-color);
+}
+
 .hover\:text-black:hover {
   color: #22292f;
 }
@@ -4803,6 +4844,10 @@ button {
 
 .focus\:text-muted-light:focus {
   color: var(--text-muted-light-color);
+}
+
+.focus\:text-error:focus {
+  color: var(--text-error-color);
 }
 
 .focus\:text-black:focus {
@@ -5659,6 +5704,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .sm\:border-error {
+    border-color: var(--text-error-color);
+  }
+
   .sm\:border-black {
     border-color: #22292f;
   }
@@ -5967,6 +6016,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .sm\:hover\:border-error:hover {
+    border-color: var(--text-error-color);
+  }
+
   .sm\:hover\:border-black:hover {
     border-color: #22292f;
   }
@@ -6273,6 +6326,10 @@ button {
 
   .sm\:focus\:border-muted-light:focus {
     border-color: var(--text-muted-light-color);
+  }
+
+  .sm\:focus\:border-error:focus {
+    border-color: var(--text-error-color);
   }
 
   .sm\:focus\:border-black:focus {
@@ -9059,6 +9116,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .sm\:text-error {
+    color: var(--text-error-color);
+  }
+
   .sm\:text-black {
     color: #22292f;
   }
@@ -9371,6 +9432,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .sm\:hover\:text-error:hover {
+    color: var(--text-error-color);
+  }
+
   .sm\:hover\:text-black:hover {
     color: #22292f;
   }
@@ -9681,6 +9746,10 @@ button {
 
   .sm\:focus\:text-muted-light:focus {
     color: var(--text-muted-light-color);
+  }
+
+  .sm\:focus\:text-error:focus {
+    color: var(--text-error-color);
   }
 
   .sm\:focus\:text-black:focus {
@@ -10538,6 +10607,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .md\:border-error {
+    border-color: var(--text-error-color);
+  }
+
   .md\:border-black {
     border-color: #22292f;
   }
@@ -10846,6 +10919,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .md\:hover\:border-error:hover {
+    border-color: var(--text-error-color);
+  }
+
   .md\:hover\:border-black:hover {
     border-color: #22292f;
   }
@@ -11152,6 +11229,10 @@ button {
 
   .md\:focus\:border-muted-light:focus {
     border-color: var(--text-muted-light-color);
+  }
+
+  .md\:focus\:border-error:focus {
+    border-color: var(--text-error-color);
   }
 
   .md\:focus\:border-black:focus {
@@ -13938,6 +14019,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .md\:text-error {
+    color: var(--text-error-color);
+  }
+
   .md\:text-black {
     color: #22292f;
   }
@@ -14250,6 +14335,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .md\:hover\:text-error:hover {
+    color: var(--text-error-color);
+  }
+
   .md\:hover\:text-black:hover {
     color: #22292f;
   }
@@ -14560,6 +14649,10 @@ button {
 
   .md\:focus\:text-muted-light:focus {
     color: var(--text-muted-light-color);
+  }
+
+  .md\:focus\:text-error:focus {
+    color: var(--text-error-color);
   }
 
   .md\:focus\:text-black:focus {
@@ -15417,6 +15510,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .lg\:border-error {
+    border-color: var(--text-error-color);
+  }
+
   .lg\:border-black {
     border-color: #22292f;
   }
@@ -15725,6 +15822,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .lg\:hover\:border-error:hover {
+    border-color: var(--text-error-color);
+  }
+
   .lg\:hover\:border-black:hover {
     border-color: #22292f;
   }
@@ -16031,6 +16132,10 @@ button {
 
   .lg\:focus\:border-muted-light:focus {
     border-color: var(--text-muted-light-color);
+  }
+
+  .lg\:focus\:border-error:focus {
+    border-color: var(--text-error-color);
   }
 
   .lg\:focus\:border-black:focus {
@@ -18817,6 +18922,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .lg\:text-error {
+    color: var(--text-error-color);
+  }
+
   .lg\:text-black {
     color: #22292f;
   }
@@ -19129,6 +19238,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .lg\:hover\:text-error:hover {
+    color: var(--text-error-color);
+  }
+
   .lg\:hover\:text-black:hover {
     color: #22292f;
   }
@@ -19439,6 +19552,10 @@ button {
 
   .lg\:focus\:text-muted-light:focus {
     color: var(--text-muted-light-color);
+  }
+
+  .lg\:focus\:text-error:focus {
+    color: var(--text-error-color);
   }
 
   .lg\:focus\:text-black:focus {
@@ -20296,6 +20413,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .xl\:border-error {
+    border-color: var(--text-error-color);
+  }
+
   .xl\:border-black {
     border-color: #22292f;
   }
@@ -20604,6 +20725,10 @@ button {
     border-color: var(--text-muted-light-color);
   }
 
+  .xl\:hover\:border-error:hover {
+    border-color: var(--text-error-color);
+  }
+
   .xl\:hover\:border-black:hover {
     border-color: #22292f;
   }
@@ -20910,6 +21035,10 @@ button {
 
   .xl\:focus\:border-muted-light:focus {
     border-color: var(--text-muted-light-color);
+  }
+
+  .xl\:focus\:border-error:focus {
+    border-color: var(--text-error-color);
   }
 
   .xl\:focus\:border-black:focus {
@@ -23696,6 +23825,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .xl\:text-error {
+    color: var(--text-error-color);
+  }
+
   .xl\:text-black {
     color: #22292f;
   }
@@ -24008,6 +24141,10 @@ button {
     color: var(--text-muted-light-color);
   }
 
+  .xl\:hover\:text-error:hover {
+    color: var(--text-error-color);
+  }
+
   .xl\:hover\:text-black:hover {
     color: #22292f;
   }
@@ -24318,6 +24455,10 @@ button {
 
   .xl\:focus\:text-muted-light:focus {
     color: var(--text-muted-light-color);
+  }
+
+  .xl\:focus\:text-error:focus {
+    color: var(--text-error-color);
   }
 
   .xl\:focus\:text-black:focus {

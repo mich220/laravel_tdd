@@ -63,9 +63,18 @@
                             style="min-height: 200px"
                             placeholder="Write anything..."
                         >{{ $project->notes }}</textarea>
+
                         <button type="submit" class="button bg-button">Update</button>
                     </form>
+                    <dropdown>
+                        <template v-slot:trigger>
+                            <a href="#">click me</a>
+                        </template>
 
+                        <a href="#" class="block text-default no-underline hover:underline text-sm leading-loose px-4">item 1</a>
+                        <a href="#" class="block text-default no-underline hover:underline text-sm leading-loose px-4">item 1</a>
+                        <a href="#" class="block text-default no-underline hover:underline text-sm leading-loose px-4">item 1</a>
+                    </dropdown>
                     @include('errors')
 
                 </div>

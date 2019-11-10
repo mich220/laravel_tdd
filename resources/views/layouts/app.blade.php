@@ -33,7 +33,7 @@
 
                     <div>
                         <!-- Right Side Of Navbar -->
-                        <div class="flex items-center ml-auto">
+                        <div class="flex items-center ">
                             <!-- Authentication Links -->
                             @guest
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -42,21 +42,26 @@
                                 @endif
                             @else
                                 <theme-switcher></theme-switcher>
-                                <a
-                                    class="flex items-center text-default no-underline text-sm"
-                                    href="#" role="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    v-pre
-                                >
-                                    <img height="80" width="80"
-                                        src="{{ gravatar_url(auth()->user()->email) }}?s=60"
-                                        alt="{{  Auth::user()->name }}'s avatar"
-                                        class="rounded-full mr-3"
-                                    />
-                                    {{ Auth::user()->name }}
-                                </a>
+                            <dropdown align="right" width="200px">
+                                <template v-slot:trigger>
+                                    <button
+                                        class="flex items-center text-default no-underline text-sm focus:outline-none"
+                                        href="#" role="button"
+                                    >
+                                        <img height="80" width="80"
+                                             src="{{ gravatar_url(auth()->user()->email) }}?s=60"
+                                             class="rounded-full mr-3"
+                                        />
+                                        {{ auth()->user()->name }}
+                                    </button>
+                                </template>
+
+                                <form id="logout-form" method="POST" action="/logout">
+                                    @csrf
+                                    <button type="submit" class="dropdown-menu-link w-full text-left">Logout</button>
+                                </form>
+
+                            </dropdown>
                             @endguest
                         </div>
                     </div>
